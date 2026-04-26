@@ -16,7 +16,7 @@ async function bootstrap() {
 
   // CORS
   app.enableCors({
-    origin: [process.env.FRONTEND_URL || 'http://localhost:3000'],
+    origin: [process.env.FRONTEND_URL || 'http://localhost:3000', process.env.APP_URL || 'http://localhost:4000'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
@@ -62,7 +62,7 @@ async function bootstrap() {
   });
 
   const port = process.env.PORT || 4000;
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
   console.log(`🚀 MediBook Backend running on: http://localhost:${port}`);
   console.log(`📚 API Docs: http://localhost:${port}/api/docs`);
 }
