@@ -268,7 +268,7 @@ export default function WritePrescriptionScreen() {
           <View style={styles.sectionRow}>
             <Text style={styles.sectionTitle}>💊 Medicines ({medicines.length})</Text>
             <TouchableOpacity onPress={addMedicine} style={styles.addMedBtn}>
-              <Ionicons name="add" size={18} color={Colors.teal[700]} />
+              <Ionicons name="add" size={18} color={Colors.teal[600]} />
               <Text style={styles.addMedText}>Add</Text>
             </TouchableOpacity>
           </View>
@@ -331,21 +331,21 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: FontSize.lg, fontWeight: '800', color: Colors.white },
   headerSub: { fontSize: FontSize.xs, color: 'rgba(255,255,255,0.5)', marginTop: 1 },
 
-  patientCard: { backgroundColor: Colors.teal[50], borderRadius: Radius['2xl'], padding: 14, gap: 6, borderWidth: 1, borderColor: Colors.teal[100] },
+  patientCard: { backgroundColor: Colors.teal[400], borderRadius: Radius['2xl'], padding: 14, gap: 6, borderWidth: 1, borderColor: Colors.teal[400] },
   patientInfo: {},
-  patientName: { fontSize: FontSize.lg, fontWeight: '800', color: Colors.teal[900] },
+  patientName: { fontSize: FontSize.lg, fontWeight: '800', color: Colors.teal[400] },
   patientMeta: { fontSize: FontSize.xs, color: Colors.teal[600], marginTop: 2 },
   vitalsQuick: { flexDirection: 'row', gap: 6, flexWrap: 'wrap' },
-  vitalBadge: { fontSize: 12, backgroundColor: Colors.teal[100], paddingHorizontal: 8, paddingVertical: 3, borderRadius: Radius.full, color: Colors.teal[800], fontWeight: '600' },
-  aptNote: { fontSize: FontSize.xs, color: Colors.teal[700], fontStyle: 'italic' },
+  vitalBadge: { fontSize: 12, backgroundColor: Colors.teal[400], paddingHorizontal: 8, paddingVertical: 3, borderRadius: Radius.full, color: Colors.teal[400], fontWeight: '600' },
+  aptNote: { fontSize: FontSize.xs, color: Colors.teal[600], fontStyle: 'italic' },
 
   section: { gap: 10 },
   sectionTitle: { fontSize: FontSize.base, fontWeight: '800', color: Colors.slate[900] },
   sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   diagInput: { backgroundColor: Colors.white, borderWidth: 1.5, borderColor: Colors.slate[200], borderRadius: Radius.xl, paddingHorizontal: 14, paddingVertical: 12, fontSize: FontSize.sm, color: Colors.slate[900] },
 
-  addMedBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: Colors.teal[50], paddingHorizontal: 12, paddingVertical: 6, borderRadius: Radius.full },
-  addMedText: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.teal[700] },
+  addMedBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: Colors.teal[400], paddingHorizontal: 12, paddingVertical: 6, borderRadius: Radius.full },
+  addMedText: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.teal[600] },
   emptyMed: { alignItems: 'center', padding: 32, backgroundColor: Colors.white, borderRadius: Radius['2xl'], borderWidth: 2, borderStyle: 'dashed', borderColor: Colors.slate[200] },
   emptyMedText: { fontSize: FontSize.sm, color: Colors.slate[400], fontWeight: '600' },
 

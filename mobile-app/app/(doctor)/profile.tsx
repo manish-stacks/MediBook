@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   menuIcon:  { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   menuLabel: { flex: 1, fontSize: FontSize.base, fontWeight: '600', color: Colors.slate[800] },
 
-  logoutBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: Colors.red[50], borderWidth: 1.5, borderColor: Colors.red[200], borderRadius: Radius['2xl'], padding: 16, marginTop: 8, marginBottom: 16 },
+  logoutBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: Colors.red[50], borderWidth: 1.5, borderColor: Colors.red[100], borderRadius: Radius['2xl'], padding: 16, marginTop: 8, marginBottom: 16 },
   logoutText:{ fontSize: FontSize.base, fontWeight: '700', color: Colors.red[600] },
   versionText:{ textAlign: 'center', fontSize: FontSize.xs, color: Colors.slate[400] },
 });

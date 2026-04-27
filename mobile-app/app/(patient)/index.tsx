@@ -12,7 +12,6 @@ import { formatDate, formatTime, getStatusColor, formatCurrency } from '../../sr
 import Avatar from '../../src/components/ui/Avatar';
 import Card from '../../src/components/ui/Card';
 import Badge from '../../src/components/ui/Badge';
-import StatCard from '../../src/components/ui/StatCard';
 
 const { width } = Dimensions.get('window');
 
@@ -93,6 +92,7 @@ export default function PatientHome() {
 
       <View style={styles.body}>
         {/* Quick Actions */}
+
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.quickGrid}>
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   sectionTitle: { fontSize: FontSize.xl, fontWeight: '800', color: Colors.slate[900], letterSpacing: -0.3 },
   seeAll: { fontSize: FontSize.sm, color: Colors.brand[600], fontWeight: '700' },
 
-  quickGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  quickGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   quickItem: { width: (width - 52) / 4, borderRadius: Radius.xl, padding: 14, alignItems: 'center', gap: 6 },
   quickIcon: { fontSize: 28 },
   quickLabel: { fontSize: 11, fontWeight: '700', color: Colors.slate[700], textAlign: 'center' },

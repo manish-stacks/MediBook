@@ -37,9 +37,9 @@ export default function Input({
         !!error && styles.error,
         !editable && styles.disabled,
       ]}>
-        {leftIcon && (
+        {leftIcon ? (
           <Ionicons name={leftIcon} size={18} color={focused ? Colors.brand[600] : Colors.slate[400]} style={styles.leftIcon} />
-        )}
+        ): null}
         <TextInput
           value={value}
           onChangeText={onChangeText}

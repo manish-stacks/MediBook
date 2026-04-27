@@ -1,11 +1,7 @@
-// src/api/client.ts
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
-// Change this to your backend URL
-export const API_BASE = 'http://localhost:4000/api/v1';
-// For Android emulator: http://10.0.2.2:4000/api/v1
-// For iOS simulator:    http://localhost:4000/api/v1
+export const API_BASE = 'http://192.168.1.10:4000/api/v1';
 
 export const api = axios.create({
   baseURL: API_BASE,

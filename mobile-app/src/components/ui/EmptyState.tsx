@@ -14,7 +14,7 @@ interface EmptyStateProps {
 export default function EmptyState({ emoji = '🔍', title, subtitle, action }: EmptyStateProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.emoji}>{emoji}</Text>
+      <Text style={styles.emoji}>{emoji || '🔍'}</Text>
       <Text style={styles.title}>{title}</Text>
       {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       {action && (

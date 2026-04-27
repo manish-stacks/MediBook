@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: Colors.slate[100] },
   backBtn: { width: 40, height: 40, borderRadius: 12, backgroundColor: Colors.slate[100], alignItems: 'center', justifyContent: 'center' },
   headerTitle: { fontSize: FontSize['2xl'], fontWeight: '900', color: Colors.slate[900] },
-  infoCard: { flexDirection: 'row', gap: 10, backgroundColor: Colors.teal[50], borderRadius: Radius.xl, padding: 14 },
-  infoText: { flex: 1, fontSize: FontSize.sm, color: Colors.teal[700], lineHeight: 20 },
+  infoCard: { flexDirection: 'row', gap: 10, backgroundColor: Colors.teal[400], borderRadius: Radius.xl, padding: 14 },
+  infoText: { flex: 1, fontSize: FontSize.sm, color: Colors.teal[600], lineHeight: 20 },
 });

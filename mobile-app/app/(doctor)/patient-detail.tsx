@@ -67,7 +67,7 @@ export default function DoctorPatientDetailScreen() {
             <View style={styles.contactRow}>
               {patient.phone && (
                 <TouchableOpacity style={styles.contactBtn} onPress={() => Linking.openURL(`tel:${patient.phone}`)}>
-                  <Ionicons name="call-outline" size={15} color={Colors.teal[700]} />
+                  <Ionicons name="call-outline" size={15} color={Colors.teal[600]} />
                   <Text style={styles.contactBtnText}>{patient.phone}</Text>
                 </TouchableOpacity>
               )}
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   rxPreview: { backgroundColor: Colors.slate[50], borderRadius: Radius.lg, padding: 10, gap: 6 },
   rxDiag: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.brand[700] },
   rxMeds: { flexDirection: 'row', flexWrap: 'wrap', gap: 4 },
-  rxMed: { fontSize: 11, backgroundColor: Colors.teal[50], paddingHorizontal: 7, paddingVertical: 2, borderRadius: Radius.full, color: Colors.teal[700] },
+  rxMed: { fontSize: 11, backgroundColor: Colors.teal[400], paddingHorizontal: 7, paddingVertical: 2, borderRadius: Radius.full, color: Colors.teal[600] },
   rxMore: { fontSize: 11, color: Colors.slate[400] },
   pdfBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, alignSelf: 'flex-start' },
   pdfBtnText: { fontSize: FontSize.xs, color: Colors.brand[600], fontWeight: '700' },

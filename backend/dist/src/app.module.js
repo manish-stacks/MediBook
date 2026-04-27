@@ -28,6 +28,7 @@ const specialities_module_1 = require("./specialities/specialities.module");
 const admin_module_1 = require("./admin/admin.module");
 const favorites_module_1 = require("./favorites/favorites.module");
 const settings_module_1 = require("./settings/settings.module");
+const app_controller_1 = require("./app.controller");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -55,6 +56,7 @@ exports.AppModule = AppModule = __decorate([
             favorites_module_1.FavoritesModule,
             settings_module_1.SettingsModule,
         ],
+        controllers: [app_controller_1.AppController],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

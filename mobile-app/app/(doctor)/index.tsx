@@ -65,13 +65,17 @@ export default function DoctorHome() {
         </View>
 
         {/* Rating chip */}
-        {stats?.rating && (
+        {typeof stats?.rating === 'number' ? (
           <View style={styles.ratingChip}>
             <Ionicons name="star" size={14} color="#fbbf24" />
-            <Text style={styles.ratingText}>{Number(stats.rating).toFixed(1)} Rating</Text>
-            <Text style={styles.ratingCount}>({stats.totalReviews} reviews)</Text>
+            <Text style={styles.ratingText}>
+              {stats.rating.toFixed(1)} Rating
+            </Text>
+            <Text style={styles.ratingCount}>
+              ({stats.totalReviews ?? 0} reviews)
+            </Text>
           </View>
-        )}
+        ) : null}
       </LinearGradient>
 
       <View style={styles.body}>
@@ -102,8 +106,14 @@ export default function DoctorHome() {
           {today.length === 0 ? (
             <Card style={styles.emptyCard}>
               <Text style={{ fontSize: 48, marginBottom: 12 }}>🗓️</Text>
-              <Text style={styles.emptyTitle}>No appointments today</Text>
-              <Text style={styles.emptySubText}>Enjoy your free day!</Text>
+
+              <Text style={styles.emptyTitle}>
+                No appointments today
+              </Text>
+
+              <Text style={styles.emptySubText}>
+                Enjoy your free day!
+              </Text>
             </Card>
           ) : (
             <View style={{ gap: 10 }}>
@@ -113,19 +123,33 @@ export default function DoctorHome() {
                   <TouchableOpacity key={apt.id} onPress={() => router.push(`/(doctor)/appointment-detail?id=${apt.id}`)} activeOpacity={0.85}>
                     <Card style={styles.aptCard}>
                       <View style={styles.timeCol}>
-                        <Text style={styles.timeHour}>{formatTime(apt.scheduledTime).split(' ')[0]}</Text>
-                        <Text style={styles.timeAMPM}>{formatTime(apt.scheduledTime).split(' ')[1]}</Text>
+                        <Text style={styles.timeHour}>{apt?.scheduledTime ? formatTime(apt.scheduledTime).split(' ')[0] : '--'}</Text>
+                        <Text style={styles.timeAMPM}>{apt?.scheduledTime ? formatTime(apt.scheduledTime).split(' ')[1] : '--'}</Text>
                       </View>
                       <View style={styles.divider} />
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.patientName}>{apt.patient?.firstName} {apt.patient?.lastName}</Text>
-                        <Text style={styles.patientMeta}>{apt.patient?.gender} · {apt.clinic?.name}</Text>
-                        {apt.patient?.vitals?.length > 0 && (
-                          <View style={styles.vitalsRow}>
-                            {apt.patient.vitals[0]?.temperature && <Text style={styles.vitalChip}>🌡️ {apt.patient.vitals[0].temperature}°C</Text>}
-                            {apt.patient.vitals[0]?.bloodPressure && <Text style={styles.vitalChip}>❤️ {apt.patient.vitals[0].bloodPressure}</Text>}
-                          </View>
-                        )}
+                        <Text style={styles.patientName}>{`${apt.patient?.firstName || ''} ${apt.patient?.lastName || ''}`}</Text>
+                        <Text style={styles.patientMeta}>
+                          {apt.patient?.gender ?? 'N/A'} · {apt.clinic?.name ?? 'No clinic'}
+                        </Text>
+                        {
+                          Array.isArray(apt?.patient?.vitals) &&
+                          apt.patient.vitals.length > 0 && (
+                            <View style={styles.vitalsRow}>
+                              {apt.patient.vitals[0]?.temperature ? (
+                                <Text style={styles.vitalChip}>
+                                  🌡️ {apt.patient.vitals[0].temperature}°C
+                                </Text>
+                              ) : null}
+
+                              {apt.patient.vitals[0]?.bloodPressure ? (
+                                <Text style={styles.vitalChip}>
+                                  ❤️ {apt.patient.vitals[0].bloodPressure}
+                                </Text>
+                              ) : null}
+                            </View>
+                          )
+                        }
                       </View>
                       <Badge label={apt.status} bg={sc.bg} color={sc.text} size="sm" />
                     </Card>
@@ -175,9 +199,9 @@ const styles = StyleSheet.create({
   timeCol: { alignItems: 'center', width: 48 },
   timeHour: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.teal[600] },
   timeAMPM: { fontSize: 10, color: Colors.teal[400], fontWeight: '700' },
-  divider:  { width: 1, height: '100%', backgroundColor: Colors.slate[100] },
+  divider: { width: 1, height: '100%', backgroundColor: Colors.slate[100] },
   patientName: { fontSize: FontSize.base, fontWeight: '700', color: Colors.slate[900] },
   patientMeta: { fontSize: FontSize.xs, color: Colors.slate[400], marginTop: 2, textTransform: 'capitalize' },
-  vitalsRow:   { flexDirection: 'row', gap: 6, marginTop: 5, flexWrap: 'wrap' },
-  vitalChip:   { fontSize: 11, backgroundColor: Colors.brand[100] || '#fff7ed', paddingHorizontal: 7, paddingVertical: 2, borderRadius: Radius.full, color: Colors.amber[600] },
+  vitalsRow: { flexDirection: 'row', gap: 6, marginTop: 5, flexWrap: 'wrap' },
+  vitalChip: { fontSize: 11, backgroundColor: Colors.brand[100] || '#fff7ed', paddingHorizontal: 7, paddingVertical: 2, borderRadius: Radius.full, color: Colors.amber[600] },
 });

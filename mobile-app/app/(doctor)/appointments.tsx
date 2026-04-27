@@ -104,7 +104,7 @@ export default function DoctorAppointmentsScreen() {
                     {['PENDING', 'CONFIRMED', 'COMPLETED'].includes(apt.status) && (
                       <TouchableOpacity style={[styles.actionBtn, styles.rxBtn]} onPress={() => router.push(`/(doctor)/write-prescription?appointmentId=${apt.id}&patientId=${apt.patientId}`)}>
                         <Ionicons name="document-text-outline" size={15} color={Colors.teal[600]} />
-                        <Text style={[styles.actionText, { color: Colors.teal[700] }]}>
+                        <Text style={[styles.actionText, { color: Colors.teal[600] }]}>
                           {apt.prescription ? 'Edit Rx' : 'Write Rx'}
                         </Text>
                       </TouchableOpacity>
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   noteText: { flex: 1, fontSize: FontSize.xs, color: Colors.slate[500] },
   actions: { flexDirection: 'row', gap: 8, borderTopWidth: 1, borderTopColor: Colors.slate[50], paddingTop: 10 },
   actionBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, backgroundColor: Colors.brand[50], borderRadius: Radius.lg, paddingVertical: 8 },
-  rxBtn: { backgroundColor: Colors.teal[50] },
+  rxBtn: { backgroundColor: Colors.teal[400] },
   actionText: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.brand[700] },
   empty: { alignItems: 'center', paddingVertical: 60 },
   emptyText: { fontSize: FontSize.xl, fontWeight: '800', color: Colors.slate[700] },

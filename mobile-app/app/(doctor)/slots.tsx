@@ -44,15 +44,7 @@ export default function DoctorSlotsScreen() {
     ]);
   };
 
-  const TimeInput = ({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) => (
-    <View style={styles.timeField}>
-      <Text style={styles.fieldLabel}>{label}</Text>
-      <View style={styles.timeInput}>
-        <Ionicons name="time-outline" size={16} color={Colors.slate[400]} />
-        <TextInputBasic value={value} onChangeText={onChange} placeholder="HH:MM" style={styles.timeText} />
-      </View>
-    </View>
-  );
+
 
   return (
     <ScrollView style={[styles.container, { paddingTop: insets.top }]} showsVerticalScrollIndicator={false}>
@@ -201,12 +193,12 @@ const styles = StyleSheet.create({
   timeText: { flex: 1, fontSize: FontSize.base, color: Colors.slate[900] },
   timeInputText: { fontSize: FontSize.base, fontWeight: '600' },
   presetBtn: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: Radius.full, backgroundColor: Colors.slate[100] },
-  presetBtnActive: { backgroundColor: Colors.teal[50], borderWidth: 1.5, borderColor: Colors.teal[500] },
+  presetBtnActive: { backgroundColor: Colors.teal[400], borderWidth: 1.5, borderColor: Colors.teal[500] },
   presetText: { fontSize: FontSize.xs, fontWeight: '600', color: Colors.slate[600] },
-  presetTextActive: { color: Colors.teal[700] },
+  presetTextActive: { color: Colors.teal[600] },
   durRow: { flexDirection: 'row', gap: 8 },
   durBtn: { flex: 1, paddingVertical: 10, borderRadius: Radius.lg, backgroundColor: Colors.slate[100], alignItems: 'center' },
-  durBtnActive: { backgroundColor: Colors.teal[600] },
+  durBtnActive: { backgroundColor: Colors.teal[400] },
   durText: { fontSize: FontSize.sm, fontWeight: '700', color: Colors.slate[600] },
   durTextActive: { color: Colors.white },
 

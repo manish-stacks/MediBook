@@ -184,7 +184,7 @@ export default function DoctorAppointmentDetailScreen() {
           <View style={styles.cardTopRow}>
             <Text style={styles.cardTitle}>🩺 Vitals</Text>
             <TouchableOpacity onPress={() => setShowVitals(true)} style={styles.editVitalsBtn}>
-              <Ionicons name={vitals ? 'pencil-outline' : 'add-outline'} size={15} color={Colors.teal[700]} />
+              <Ionicons name={vitals ? 'pencil-outline' : 'add-outline'} size={15} color={Colors.teal[600]} />
               <Text style={styles.editVitalsBtnText}>{vitals ? 'Update' : 'Record'}</Text>
             </TouchableOpacity>
           </View>
@@ -229,7 +229,7 @@ export default function DoctorAppointmentDetailScreen() {
               onPress={() => router.push(`/(doctor)/write-prescription?appointmentId=${apt.id}&patientId=${apt.patientId}${apt.prescription ? '&edit=' + apt.prescription.id : ''}`)}
               style={styles.editVitalsBtn}
             >
-              <Ionicons name={apt.prescription ? 'pencil-outline' : 'add-outline'} size={15} color={Colors.teal[700]} />
+              <Ionicons name={apt.prescription ? 'pencil-outline' : 'add-outline'} size={15} color={Colors.teal[600]} />
               <Text style={styles.editVitalsBtnText}>{apt.prescription ? 'Edit Rx' : 'Write Rx'}</Text>
             </TouchableOpacity>
           </View>
@@ -290,12 +290,12 @@ const styles = StyleSheet.create({
   scheduleItem: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   scheduleText: { fontSize: FontSize.xs, color: Colors.slate[600], fontWeight: '600' },
   noteBox: { flexDirection: 'row', gap: 6, marginTop: 10, backgroundColor: Colors.amber[50], borderRadius: Radius.lg, padding: 10 },
-  noteText: { flex: 1, fontSize: FontSize.xs, color: Colors.amber[800] },
+  noteText: { flex: 1, fontSize: FontSize.xs, color: Colors.amber[600] },
 
   cardTopRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 },
   cardTitle: { fontSize: FontSize.base, fontWeight: '800', color: Colors.slate[900] },
-  editVitalsBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: Colors.teal[50], paddingHorizontal: 10, paddingVertical: 5, borderRadius: Radius.full },
-  editVitalsBtnText: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.teal[700] },
+  editVitalsBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: Colors.teal[400], paddingHorizontal: 10, paddingVertical: 5, borderRadius: Radius.full },
+  editVitalsBtnText: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.teal[600] },
 
   vitalsGrid2: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   vitalChipBox: { backgroundColor: Colors.slate[50], borderRadius: Radius.lg, paddingHorizontal: 10, paddingVertical: 8, minWidth: '30%' },
@@ -322,8 +322,8 @@ const styles = StyleSheet.create({
   modalSub: { fontSize: FontSize.sm, color: Colors.slate[500], marginTop: 2 },
   closeBtn: { width: 36, height: 36, borderRadius: 10, backgroundColor: Colors.slate[100], alignItems: 'center', justifyContent: 'center' },
   prevVitals: { backgroundColor: Colors.amber[50], borderRadius: Radius.xl, padding: 12 },
-  prevLabel: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.amber[700], marginBottom: 4 },
-  prevText: { fontSize: FontSize.xs, color: Colors.amber[800] },
+  prevLabel: { fontSize: FontSize.xs, fontWeight: '700', color: Colors.amber[600], marginBottom: 4 },
+  prevText: { fontSize: FontSize.xs, color: Colors.amber[600] },
   vitalsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   vitalField: { width: '47%' },
   vitalFieldLabel: { fontSize: FontSize.xs, fontWeight: '600', color: Colors.slate[600], marginBottom: 5 },

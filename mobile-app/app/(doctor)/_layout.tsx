@@ -35,6 +35,17 @@ export default function DoctorLayout() {
       <Tabs.Screen name="patients" options={{ tabBarIcon: ({ focused }) => <TabIcon name={focused ? 'people' : 'people-outline'} focused={focused} label="Patients" /> }} />
       <Tabs.Screen name="slots" options={{ tabBarIcon: ({ focused }) => <TabIcon name={focused ? 'time' : 'time-outline'} focused={focused} label="Slots" /> }} />
       <Tabs.Screen name="profile" options={{ tabBarIcon: ({ focused }) => <TabIcon name={focused ? 'person' : 'person-outline'} focused={focused} label="Profile" /> }} />
+
+      <Tabs.Screen name="notifications" options={{ href: null }} />
+      <Tabs.Screen name="reviews" options={{ href: null }} />
+      <Tabs.Screen name="earnings" options={{ href: null }} />
+      <Tabs.Screen name="edit-profile" options={{ href: null }} />
+      <Tabs.Screen name="change-password" options={{ href: null }} />
+      <Tabs.Screen name="appointment-detail" options={{ href: null }} />
+      <Tabs.Screen name="patient-detail" options={{ href: null }} />
+      <Tabs.Screen name="write-prescription" options={{ href: null }} />
+
+      
     </Tabs>
   );
 }
@@ -49,9 +60,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     ...Shadow.lg,
   },
-  tabItem:       { alignItems: 'center', gap: 4 },
-  iconWrap:      { width: 44, height: 34, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  iconWrapActive:{ backgroundColor: Colors.teal[600], ...Shadow.teal },
-  tabLabel:      { fontSize: 10, fontWeight: '600', color: Colors.slate[400] },
-  tabLabelActive:{ color: Colors.teal[600] },
+  tabItem: { alignItems: 'center', gap: 4 },
+  iconWrap: { width: 44, height: 34, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  iconWrapActive: { backgroundColor: Colors.teal[600], ...Shadow.teal },
+  tabLabel: { fontSize: 10, fontWeight: '600', color: Colors.slate[400] },
+  tabLabelActive: { color: Colors.teal[600] },
 });

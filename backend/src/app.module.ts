@@ -19,6 +19,7 @@ import { SpecialitiesModule } from './specialities/specialities.module';
 import { AdminModule } from './admin/admin.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { SettingsModule } from './settings/settings.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -43,5 +44,6 @@ import { SettingsModule } from './settings/settings.module';
     FavoritesModule,
     SettingsModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}

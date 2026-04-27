@@ -55,13 +55,24 @@ function PrescriptionCard({ apt }: { apt: any }) {
                 <View style={{ flex: 1 }}>
                   <Text style={styles.medicineName}>{med.name}</Text>
                   <Text style={styles.medicineDosage}>
-                    {med.dosage}
-                    {[med.morning && 'Morning', med.afternoon && 'Afternoon', med.evening && 'Evening'].filter(Boolean).length > 0
-                      ? ` · ${[med.morning && 'Morning', med.afternoon && 'Afternoon', med.evening && 'Evening'].filter(Boolean).join(', ')}`
-                      : ''}
+                    {String(med.dosage || '')}
+
+                    {(() => {
+                      const timings = [];
+                      if (med.morning) timings.push('Morning');
+                      if (med.afternoon) timings.push('Afternoon');
+                      if (med.evening) timings.push('Evening');
+
+                      return timings.length > 0 ? ` · ${timings.join(', ')}` : '';
+                    })()}
+
                     {med.duration ? ` · ${med.duration} days` : ''}
                   </Text>
-                  {med.instructions && <Text style={styles.medicineInstructions}>{med.instructions}</Text>}
+                  {med.instructions ? (
+                    <Text style={styles.medicineInstructions}>
+                      {String(med.instructions)}
+                    </Text>
+                  ) : null}
                 </View>
               </View>
             ))}
@@ -155,7 +166,7 @@ const styles = StyleSheet.create({
   notesText: { flex: 1, fontSize: FontSize.xs, color: Colors.brand[700], lineHeight: 18 },
 
   followUp: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  followUpText: { fontSize: FontSize.xs, color: Colors.teal[700], fontWeight: '600' },
+  followUpText: { fontSize: FontSize.xs, color: Colors.teal[600], fontWeight: '600' },
 
   empty: { alignItems: 'center', paddingVertical: 60 },
   emptyTitle: { fontSize: FontSize.xl, fontWeight: '800', color: Colors.slate[900], marginBottom: 8 },

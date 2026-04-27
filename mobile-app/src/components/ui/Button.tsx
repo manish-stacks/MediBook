@@ -1,6 +1,6 @@
 // src/components/ui/Button.tsx
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ActivityIndicator, ViewStyle, TextStyle } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ActivityIndicator, ViewStyle, TextStyle, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors, Radius, FontSize, Shadow } from '../../constants/theme';
 
@@ -30,20 +30,20 @@ export default function Button({
   const getVariantStyle = () => {
     switch (variant) {
       case 'secondary': return { backgroundColor: Colors.brand[50], borderWidth: 0 };
-      case 'outline':   return { backgroundColor: 'transparent', borderWidth: 1.5, borderColor: Colors.brand[600] };
-      case 'ghost':     return { backgroundColor: 'transparent', borderWidth: 0 };
-      case 'danger':    return { backgroundColor: Colors.red[600], borderWidth: 0 };
-      default:          return {};
+      case 'outline': return { backgroundColor: 'transparent', borderWidth: 1.5, borderColor: Colors.brand[600] };
+      case 'ghost': return { backgroundColor: 'transparent', borderWidth: 0 };
+      case 'danger': return { backgroundColor: Colors.red[600], borderWidth: 0 };
+      default: return {};
     }
   };
 
   const getTextColor = () => {
     switch (variant) {
       case 'secondary': return Colors.brand[700];
-      case 'outline':   return Colors.brand[600];
-      case 'ghost':     return Colors.slate[600];
-      case 'danger':    return Colors.white;
-      default:          return Colors.white;
+      case 'outline': return Colors.brand[600];
+      case 'ghost': return Colors.slate[600];
+      case 'danger': return Colors.white;
+      default: return Colors.white;
     }
   };
 
@@ -81,7 +81,14 @@ export default function Button({
           style={[styles.base, { height: heights[size], borderRadius: Radius.xl }, isDisabled && styles.disabled]}>
           {loading
             ? <ActivityIndicator color="#fff" size="small" />
-            : <>{icon && <>{icon}</>}<Text style={[styles.text, { fontSize: fontSizes[size], color: Colors.white }, textStyle]}>{title}</Text></>
+            : (
+              <>
+                {icon ? <View>{icon}</View> : null}
+                <Text style={[styles.text, { fontSize: fontSizes[size], color: Colors.white }, textStyle]}>
+                  {title}
+                </Text>
+              </>
+            )
           }
         </LinearGradient>
       </TouchableOpacity>

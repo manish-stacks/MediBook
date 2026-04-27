@@ -12,7 +12,8 @@ interface AvatarProps {
 }
 
 export default function Avatar({ uri, name, size = 48, style }: AvatarProps) {
-  const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+  const safeName = name || '';
+  const initials = safeName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
   const radius = size * 0.28;
 
   if (uri) {

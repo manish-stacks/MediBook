@@ -46,7 +46,6 @@ export declare class AuthController {
         message: string;
         data: {
             id: string;
-            createdAt: Date;
             email: string;
             phone: string;
             firstName: string;
@@ -56,29 +55,30 @@ export declare class AuthController {
             gender: import(".prisma/client").$Enums.Gender;
             role: import(".prisma/client").$Enums.Role;
             isVerified: boolean;
+            createdAt: Date;
             doctor: {
                 speciality: {
                     id: string;
+                    isActive: boolean;
+                    createdAt: Date;
+                    updatedAt: Date;
                     name: string;
                     slug: string;
                     description: string | null;
                     icon: string | null;
                     image: string | null;
-                    isActive: boolean;
-                    createdAt: Date;
-                    updatedAt: Date;
                 };
                 clinics: ({
                     clinic: {
                         id: string;
-                        name: string;
-                        slug: string;
-                        description: string | null;
+                        email: string | null;
+                        phone: string | null;
                         isActive: boolean;
                         createdAt: Date;
                         updatedAt: Date;
-                        email: string | null;
-                        phone: string | null;
+                        name: string;
+                        slug: string;
+                        description: string | null;
                         address: string;
                         city: string;
                         state: string;
@@ -90,15 +90,16 @@ export declare class AuthController {
                 } & {
                     id: string;
                     createdAt: Date;
-                    clinicId: string;
                     doctorId: string;
+                    clinicId: string;
                 })[];
             } & {
                 id: string;
+                isVerified: boolean;
                 createdAt: Date;
                 updatedAt: Date;
-                isVerified: boolean;
                 userId: string;
+                specialityId: string;
                 registrationNo: string | null;
                 experience: number;
                 about: string | null;
@@ -110,7 +111,6 @@ export declare class AuthController {
                 totalReviews: number;
                 bookingUrl: string | null;
                 isAvailable: boolean;
-                specialityId: string;
             };
         };
     }>;
