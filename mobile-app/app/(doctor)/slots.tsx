@@ -47,7 +47,7 @@ export default function DoctorSlotsScreen() {
 
 
   return (
-    <ScrollView style={[styles.container, { paddingTop: insets.top }]} showsVerticalScrollIndicator={false}>
+    <ScrollView style={[styles.container, { paddingTop: insets.top, marginBottom: 10 }]} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <View>
           <Text style={styles.headerTitle}>Manage Slots</Text>

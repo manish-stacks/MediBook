@@ -220,7 +220,7 @@ export default function HeroSection() {
 
                 {/* CTA */}
                 <motion.button whileHover={{scale:1.02}} whileTap={{scale:0.98}}
-                  onClick={() => router.push('/doctors')}
+                  onClick={() => router.replace('/doctors/d54f42f9-ad1d-409e-b471-a1eb2a6cf7ea#book')}
                   className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-2xl text-sm shadow-xl shadow-blue-500/30 flex items-center justify-center gap-2 hover:from-blue-500 hover:to-cyan-400 transition-all">
                   Book This Slot <ArrowRight className="w-4 h-4" />
                 </motion.button>

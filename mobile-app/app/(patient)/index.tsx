@@ -160,7 +160,7 @@ export default function PatientHome() {
                 <Text style={styles.seeAll}>See All</Text>
               </TouchableOpacity>
             </View>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingRight: 4 }}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, padding: 4 }}>
               {specs.slice(0, 8).map((spec: any) => (
                 <TouchableOpacity key={spec.id} style={styles.specCard} onPress={() => router.push(`/(patient)/doctors?specialityId=${spec.id}`)} activeOpacity={0.8}>
                   <Text style={styles.specIcon}>{spec.icon || SPECIALITY_ICONS[spec.slug] || '🏥'}</Text>
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   aptMeta: { flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 5 },
   aptMetaText: { fontSize: FontSize.xs, color: Colors.slate[500] },
 
-  specCard: { backgroundColor: Colors.white, borderRadius: Radius.xl, padding: 14, alignItems: 'center', width: 90, ...Shadow.sm, borderWidth: 1, borderColor: Colors.slate[100] },
+  specCard: { backgroundColor: Colors.white, borderRadius: Radius.xl, padding: 14, alignItems: 'center', width: 90, ...Shadow.sm, borderWidth: 1, borderColor: Colors.slate[100]},
   specIcon: { fontSize: 30, marginBottom: 6 },
   specName: { fontSize: 11, fontWeight: '700', color: Colors.slate[800], textAlign: 'center', marginBottom: 2 },
   specCount: { fontSize: 10, color: Colors.slate[400], fontWeight: '500' },

@@ -102,7 +102,34 @@ export default function DoctorDetailScreen() {
   if (!doctor) return null;
 
   const isFavorite = favData?.isFavorite;
-  const availableSlots = slots?.filter((s: any) => s.status === 'AVAILABLE') || [];
+  const availableSlots = slots?.filter((s: any) => s.isAvailable) || [];
+
+  const getSlotPeriod = (time: string) => {
+    const hour = parseInt(time.split(':')[0], 10);
+
+    if (hour < 12) return 'Morning';
+    if (hour < 17) return 'Afternoon';
+    return 'Evening';
+  };
+  const groupedSlots = {
+    Morning: [] as any[],
+    Afternoon: [] as any[],
+    Evening: [] as any[],
+  };
+
+  availableSlots.forEach((slot: any) => {
+    const period = getSlotPeriod(slot.time);
+    groupedSlots[period].push(slot);
+  });
+  const educationData =
+    typeof doctor.education === "string"
+      ? JSON.parse(doctor.education)
+      : doctor.education;
+  const languagesData =
+    typeof doctor.languages === "string"
+      ? JSON.parse(doctor.languages)
+      : doctor.languages;
+
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
@@ -186,16 +213,22 @@ export default function DoctorDetailScreen() {
                 </Card>
               )}
 
-              {doctor.education?.length > 0 && (
+
+
+              {educationData?.length > 0 && (
                 <Card elevated>
                   <Text style={styles.cardTitle}>Education</Text>
                   <View style={{ gap: 8 }}>
-                    {doctor.education.map((edu: any, i: number) => (
+                    {educationData.map((edu: any, i: number) => (
                       <View key={i} style={styles.eduRow}>
-                        <View style={styles.eduIcon}><Text style={{ fontSize: 16 }}>🎓</Text></View>
+                        <View style={styles.eduIcon}>
+                          <Text style={{ fontSize: 16 }}>🎓</Text>
+                        </View>
                         <View>
                           <Text style={styles.eduDegree}>{edu.degree}</Text>
-                          <Text style={styles.eduInst}>{edu.institution} · {edu.year}</Text>
+                          <Text style={styles.eduInst}>
+                            {edu.institution} · {edu.year}
+                          </Text>
                         </View>
                       </View>
                     ))}
@@ -203,12 +236,17 @@ export default function DoctorDetailScreen() {
                 </Card>
               )}
 
-              {doctor.languages?.length > 0 && (
+              {languagesData?.length > 0 && (
                 <Card elevated>
                   <Text style={styles.cardTitle}>Languages</Text>
                   <View style={styles.langRow}>
-                    {doctor.languages.map((lang: string) => (
-                      <Badge key={lang} label={`🗣️ ${lang}`} bg={Colors.teal[50] || '#f0fdfa'} color={Colors.teal[700]} />
+                    {languagesData.map((lang: string) => (
+                      <Badge
+                        key={lang}
+                        label={`🗣️ ${lang}`}
+                        bg={Colors.teal[50] || '#f0fdfa'}
+                        color={Colors.teal[700]}
+                      />
                     ))}
                   </View>
                 </Card>
@@ -257,12 +295,39 @@ export default function DoctorDetailScreen() {
                   </View>
                 ) : (
                   <View style={styles.slotsGrid}>
-                    {availableSlots.map((slot: any) => (
-                      <TouchableOpacity key={slot.id} onPress={() => setSelectedTime(slot.startTime)}
-                        style={[styles.slotBtn, selectedTime === slot.startTime && styles.slotBtnActive]}>
-                        <Text style={[styles.slotTime, selectedTime === slot.startTime && styles.slotTimeActive]}>{slot.startTime}</Text>
-                      </TouchableOpacity>
-                    ))}
+
+                    {Object.entries(groupedSlots).map(([period, slots]) => {
+                      if (slots.length === 0) return null;
+
+                      return (
+                        <View key={period} style={{ marginBottom: 16 }}>
+                          <Text style={styles.cardTitle}>{period}</Text>
+
+                          <View style={styles.slotsGrid}>
+                            {slots.map((slot: any, index: number) => (
+                              <TouchableOpacity
+                                key={index}
+                                onPress={() => setSelectedTime(slot.time)}
+                                style={[
+                                  styles.slotBtn,
+                                  selectedTime === slot.time && styles.slotBtnActive
+                                ]}
+                              >
+                                <Text
+                                  style={[
+                                    styles.slotTime,
+                                    selectedTime === slot.time && styles.slotTimeActive
+                                  ]}
+                                >
+                                  {slot.time}
+                                </Text>
+                              </TouchableOpacity>
+                            ))}
+                          </View>
+                        </View>
+                      );
+                    })}
+
                   </View>
                 )}
               </View>
@@ -283,7 +348,7 @@ export default function DoctorDetailScreen() {
 
       {/* Book Button */}
       {activeTab === 'slots' && (
-        <View style={[styles.bookBar, { paddingBottom: insets.bottom + 8 }]}>
+        <View style={[styles.bookBar, { paddingBottom: insets.bottom + 75 }]}>
           <TouchableOpacity onPress={handleBook} activeOpacity={0.85} disabled={!selectedTime}>
             <LinearGradient
               colors={selectedTime ? ['#1e6fe8', '#02c9b3'] : ['#cbd5e1', '#94a3b8']}
@@ -455,7 +520,7 @@ const styles = StyleSheet.create({
   summaryText: { fontSize: FontSize.sm, color: Colors.brand[600] },
   summaryFee: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.brand[700], marginTop: 4 },
 
-  bookBar: { position: 'absolute', bottom: 0, left: 0, right: 0, padding: 16, backgroundColor: Colors.white, borderTopWidth: 1, borderTopColor: Colors.slate[100] },
+  bookBar: { position: 'absolute', bottom: 0, left: 0, right: 0, padding: 16, borderTopWidth: 1, borderTopColor: Colors.slate[100] },
   bookBtn: { borderRadius: Radius['2xl'], paddingVertical: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, ...Shadow.brand },
   bookBtnText: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.white },
 

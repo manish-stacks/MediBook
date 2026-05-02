@@ -317,6 +317,6 @@ const styles = StyleSheet.create({
   followUp: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   followUpText: { fontSize: FontSize.xs, color: Colors.teal[600], fontWeight: '700' },
 
-  cancelBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: Colors.red[50], borderWidth: 1.5, borderColor: Colors.red[100], borderRadius: Radius['2xl'], padding: 14 },
+  cancelBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: Colors.red[50], borderWidth: 1.5, borderColor: Colors.red[100], borderRadius: Radius['2xl'], padding: 14, marginBottom: 75 },
   cancelText: { fontSize: FontSize.base, fontWeight: '700', color: Colors.red[600] },
 });

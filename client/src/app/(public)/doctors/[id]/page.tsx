@@ -339,7 +339,7 @@ export default function DoctorProfilePage() {
     <div className="pt-16 min-h-screen bg-surface-subtle">
       {/* Header card */}
       <div className="bg-white border-b border-slate-100">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link href="/doctors" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand-600 mb-6 transition-colors">
             <ChevronLeft className="w-4 h-4" /> Back to Doctors
           </Link>
@@ -385,7 +385,7 @@ export default function DoctorProfilePage() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Left content */}
           <div className="lg:col-span-2 space-y-5">

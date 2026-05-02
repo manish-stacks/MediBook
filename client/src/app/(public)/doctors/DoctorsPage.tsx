@@ -1,7 +1,6 @@
 'use client';
-// src/app/(public)/doctors/page.tsx
 import { useState } from 'react';
-import { Suspense } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams, useRouter } from 'next/navigation';
 import api from '@/lib/api';
@@ -11,15 +10,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn, formatCurrency } from '@/lib/utils';
 
 const SORT_OPTIONS = [
-  { label: 'Best Rating',   value: 'rating-desc' },
+  { label: 'Best Rating', value: 'rating-desc' },
   { label: 'Fee: Low–High', value: 'fee-asc' },
   { label: 'Fee: High–Low', value: 'fee-desc' },
-  { label: 'Experience',    value: 'experience-desc' },
+  { label: 'Experience', value: 'experience-desc' },
 ];
 
 function DoctorCard({ doctor }: { doctor: any }) {
   const clinic = doctor.clinics?.[0]?.clinic;
-  const name   = `Dr. ${doctor.user?.firstName} ${doctor.user?.lastName}`;
+  const name = `Dr. ${doctor.user?.firstName} ${doctor.user?.lastName}`;
 
   return (
     <motion.div
@@ -180,11 +179,11 @@ function FilterPanel({ filters, setFilters, specialities, onClose }: any) {
 
 function DoctorsContent() {
   const searchParams = useSearchParams();
-  const [search, setSearch]             = useState(searchParams.get('search') || '');
-  const [sort, setSort]                 = useState('rating-desc');
-  const [page, setPage]                 = useState(1);
+  const [search, setSearch] = useState(searchParams.get('search') || '');
+  const [sort, setSort] = useState('rating-desc');
+  const [page, setPage] = useState(1);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
-  const [filters, setFilters]           = useState({
+  const [filters, setFilters] = useState({
     specialityId: searchParams.get('specialityId') || searchParams.get('speciality') || '',
     minFee: '', maxFee: '', minExperience: '', rating: '', city: '',
   });
@@ -204,7 +203,7 @@ function DoctorsContent() {
     queryFn: () => api.get('/specialities').then(r => r.data.data),
   });
 
-  const doctors    = data?.doctors || [];
+  const doctors = data?.doctors || [];
   const pagination = data?.pagination;
   const activeCount = Object.values(filters).filter(Boolean).length;
 
@@ -323,8 +322,6 @@ function DoctorsContent() {
 
 export default function DoctorsPage() {
   return (
-    // <Suspense fallback={<div className="pt-24 text-center"><div className="w-8 h-8 border-2 border-brand-600 border-t-transparent rounded-full animate-spin mx-auto" /></div>}>
-      <DoctorsContent />
-    // </Suspense>
+    <DoctorsContent />
   );
 }
