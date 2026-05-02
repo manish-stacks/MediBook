@@ -8,7 +8,21 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, Plus, Trash2, Pill, FileText, Save, Search, X } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import toast from 'react-hot-toast';
-
+type Prescription = {
+  diagnosis: string;
+  notes?: string;
+  followUpDate?: string;
+  medicines: {
+    id: string;
+    name: string;
+    dosage?: string;
+    morning: boolean;
+    afternoon: boolean;
+    evening: boolean;
+    duration?: number;
+    instructions?: string;
+  }[];
+};
 const COMMON_DOSAGES = ['500mg', '250mg', '100mg', '50mg', '10mg', '5mg', '400mg', '200mg', '1g', '2g', '25mg', '75mg'];
 const DURATIONS = ['3 days', '5 days', '7 days', '10 days', '14 days', '21 days', '30 days', '2 months', '3 months', 'Ongoing'];
 
@@ -151,12 +165,12 @@ export default function WritePrescriptionPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const appointmentId = searchParams.get('appointmentId') || '';
-  const editId        = searchParams.get('edit') || '';
+  const editId = searchParams.get('edit') || '';
 
-  const [diagnosis, setDiagnosis]     = useState('');
-  const [notes, setNotes]             = useState('');
+  const [diagnosis, setDiagnosis] = useState('');
+  const [notes, setNotes] = useState('');
   const [followUpDate, setFollowUpDate] = useState('');
-  const [medicines, setMedicines]     = useState<Medicine[]>([]);
+  const [medicines, setMedicines] = useState<Medicine[]>([]);
 
   const { data: aptData } = useQuery({
     queryKey: ['appointment', appointmentId],
@@ -164,22 +178,35 @@ export default function WritePrescriptionPage() {
     enabled: !!appointmentId,
   });
 
-  const { data: existingRx } = useQuery({
+
+  const { data: existingRx } = useQuery<Prescription>({
     queryKey: ['prescription', editId],
-    queryFn: () => api.get(`/prescriptions/${editId}`).then(r => r.data.data),
+    queryFn: () =>
+      api.get(`/prescriptions/${editId}`).then(r => r.data.data),
     enabled: !!editId,
     onSuccess: (data) => {
       if (data) {
         setDiagnosis(data.diagnosis || '');
         setNotes(data.notes || '');
-        setFollowUpDate(data.followUpDate ? data.followUpDate.split('T')[0] : '');
-        setMedicines((data.medicines || []).map((m: any) => ({
-          id: m.id, name: m.name, dosage: m.dosage || '', morning: m.morning, afternoon: m.afternoon, evening: m.evening,
-          duration: m.duration ? `${m.duration} days` : '', instructions: m.instructions || '', suggestions: [],
-        })));
+        setFollowUpDate(
+          data.followUpDate ? data.followUpDate.split('T')[0] : ''
+        );
+        setMedicines(
+          (data.medicines || []).map((m) => ({
+            id: m.id,
+            name: m.name,
+            dosage: m.dosage || '',
+            morning: m.morning,
+            afternoon: m.afternoon,
+            evening: m.evening,
+            duration: m.duration ? `${m.duration} days` : '',
+            instructions: m.instructions || '',
+            suggestions: [],
+          }))
+        );
       }
     },
-  } as any);
+  });
 
   const apt = aptData;
   const v = apt?.patient?.vitals?.[0];

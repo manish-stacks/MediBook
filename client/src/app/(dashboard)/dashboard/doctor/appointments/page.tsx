@@ -21,7 +21,7 @@ export default function DoctorAppointmentsPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['doctor-appointments', activeTab, page, dateFilter],
     queryFn: () => api.get('/appointments', { params: { status: activeTab === 'ALL' ? undefined : activeTab, page, limit: 15 } }).then(r => r.data.data),
-    keepPreviousData: true,
+    placeholderData: (prev) => prev,
   });
 
   const markDoneMutation = useMutation({

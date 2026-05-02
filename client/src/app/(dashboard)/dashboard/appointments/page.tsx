@@ -13,10 +13,10 @@ const STATUS_TABS = ['ALL', 'PENDING', 'CONFIRMED', 'COMPLETED', 'CANCELLED'];
 
 export default function AppointmentsPage() {
   const qc = useQueryClient();
-  const [activeTab, setActiveTab]   = useState('ALL');
-  const [search, setSearch]         = useState('');
-  const [cancelId, setCancelId]     = useState<string | null>(null);
-  const [page, setPage]             = useState(1);
+  const [activeTab, setActiveTab] = useState('ALL');
+  const [search, setSearch] = useState('');
+  const [cancelId, setCancelId] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
 
   const { data, isLoading } = useQuery({
     queryKey: ['appointments', activeTab, page],
@@ -24,7 +24,8 @@ export default function AppointmentsPage() {
       api.get('/appointments', {
         params: { status: activeTab === 'ALL' ? undefined : activeTab, page, limit: 10 },
       }).then(r => r.data.data),
-    keepPreviousData: true,
+    // keepPreviousData: true,
+    placeholderData: (prev) => prev,
   });
 
   const cancelMutation = useMutation({
@@ -38,13 +39,13 @@ export default function AppointmentsPage() {
   });
 
   const appointments = data?.appointments || [];
-  const pagination   = data?.pagination;
+  const pagination = data?.pagination;
 
   const filtered = search
     ? appointments.filter((a: any) =>
-        `${a.doctor?.user?.firstName} ${a.doctor?.user?.lastName}`.toLowerCase().includes(search.toLowerCase()) ||
-        a.clinic?.name?.toLowerCase().includes(search.toLowerCase()),
-      )
+      `${a.doctor?.user?.firstName} ${a.doctor?.user?.lastName}`.toLowerCase().includes(search.toLowerCase()) ||
+      a.clinic?.name?.toLowerCase().includes(search.toLowerCase()),
+    )
     : appointments;
 
   return (
